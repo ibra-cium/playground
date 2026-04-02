@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { ENV } from "./config/env.js";
 import path from "path";
+import { dbConnect } from "./config/dbcon.js";
 dotenv.config();
 const app = express();
 const PORT = ENV.PORT || 3000;
@@ -27,4 +28,6 @@ if (ENV.NODE_ENV === "production") {
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    dbConnect();
+    console.log(ENV.DATA_BASE_URL);
 });
